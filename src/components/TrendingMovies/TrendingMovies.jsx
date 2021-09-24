@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { fetchTrendingMovies } from "../../services/movies-api";
+import MovieList from "../MovieList/MovieList";
 
 function TrendingMovies() {
   const [movies, setMovies] = useState([]);
@@ -9,19 +9,7 @@ function TrendingMovies() {
     fetchTrendingMovies().then(setMovies);
   }, []);
 
-  return (
-    <div>
-      {movies && (
-        <ul>
-          {movies.map((movie) => (
-            <Link key={movie.id} to={`/movies/${movie.id}`}>
-              <p>{movie.name || movie.title}</p>
-            </Link>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+  return <div>{movies && <MovieList movies={movies} />}</div>;
 }
 
 export default TrendingMovies;

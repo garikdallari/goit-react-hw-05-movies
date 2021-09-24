@@ -1,3 +1,12 @@
 .card {
   display: flex;
 }
+.link {
+  margin-right: 20px;
+  text-decoration: none;
+  color: black;
+  font-size: 15px;
+}
+.activeLink {
+  color: crimson;
+}

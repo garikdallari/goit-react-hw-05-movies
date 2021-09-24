@@ -15,3 +15,22 @@ export async function fetchMovieById(id) {
   );
   return data;
 }
+
+export async function fetchMovieCasts(id) {
+  const { data } = await axios.get(
+    `/movie/${id}/credits?api_key=${API_KEY}&language=en-US`
+  );
+  return data.cast;
+}
+export async function fetchMovieReviews(id) {
+  const { data } = await axios.get(
+    `/movie/${id}/reviews?api_key=${API_KEY}&language=en-US`
+  );
+  return data.results;
+}
+export async function fetchMovieByName(query) {
+  const { data } = await axios.get(
+    `/search/movie?query=${query}&api_key=${API_KEY}&language=en-US&page=1&include_adult=false`
+  );
+  return data.results;
+}
