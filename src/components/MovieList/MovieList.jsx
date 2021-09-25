@@ -1,11 +1,11 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-
+import styles from "./MovieList.module.css";
 function MovieList({ movies }) {
   const location = useLocation();
 
   return (
-    <ul>
+    <ul className={styles.list}>
       {movies &&
         movies.map((movie) => (
           <Link
@@ -15,7 +15,11 @@ function MovieList({ movies }) {
               state: { from: location },
             }}
           >
-            <p>{movie.name || movie.title}</p>
+            <img
+              className={styles.img}
+              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+              alt=""
+            />
           </Link>
         ))}
     </ul>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchTrendingMovies } from "../../services/movies-api";
 import MovieList from "../MovieList/MovieList";
+import styles from "./TrendingMovies.module.css";
 
 function TrendingMovies() {
   const [movies, setMovies] = useState([]);

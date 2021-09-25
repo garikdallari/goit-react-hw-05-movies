@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
+import styles from "./Movies.module.css";
 import { fetchMovieByName } from "../../services/movies-api";
 import MovieList from "../MovieList/MovieList";
+import { HiSearch } from "react-icons/hi";
 
 function Movies() {
   const [value, setValue] = useState(null);
@@ -33,10 +35,17 @@ function Movies() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input name="searchValue" type="text"></input>
-        <button type="submit">Search</button>
+        <input
+          placeholder="type to search movies..."
+          className={styles.input}
+          name="searchValue"
+          type="text"
+          autoComplete="off"
+        ></input>
+        <button className={styles.btn} type="submit">
+          <HiSearch size={25} color="darkred" />
+        </button>
       </form>
-
       {Movies && <MovieList movies={movies} />}
     </>
   );
