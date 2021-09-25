@@ -8,6 +8,7 @@ function MovieCard({ movie }) {
         <h2>
           {movie.title || movie.name} ({movie.release_date.slice(0, 4)})
         </h2>
+        <p>User score : {movie.vote_average * 10}%</p>
         <b>Overview</b>
         <p>{movie.overview}</p>
         <b>Genres</b>

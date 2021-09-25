@@ -1,26 +1,39 @@
+import { lazy, Suspense } from "react";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import Container from "./components/Container/Container";
 import Navigation from "./components/Navigation/Navigation";
-import TrendingMovies from "./components/TrendingMovies/TrendingMovies";
-import Movies from "./components/Movies/Movies";
-import MovieDetails from "./components/MovieDetails/MovieDetails";
+const TrendingMovies = lazy(() =>
+  import(
+    "./components/TrendingMovies/TrendingMovies" /* webpackChunkName: 'trendingMovies' */
+  )
+);
+const Movies = lazy(() =>
+  import("./components/Movies/Movies" /* webpackChunkName: 'movies' */)
+);
+const MovieDetails = lazy(() =>
+  import(
+    "./components/MovieDetails/MovieDetails" /* webpackChunkName: 'movieDetails' */
+  )
+);
 
 function App() {
   return (
     <Container>
       <Navigation />
-      <Switch>
-        <Route path="/" exact>
-          <TrendingMovies />
-        </Route>
-        <Route path="/movies" exact>
-          <Movies />
-        </Route>
-        <Route path="/movies/:id">
-          <MovieDetails />
-        </Route>
-      </Switch>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Switch>
+          <Route path="/" exact>
+            <TrendingMovies />
+          </Route>
+          <Route path="/movies" exact>
+            <Movies />
+          </Route>
+          <Route path="/movies/:id">
+            <MovieDetails />
+          </Route>
+        </Switch>
+      </Suspense>
     </Container>
   );
 }
