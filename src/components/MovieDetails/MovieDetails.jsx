@@ -60,14 +60,20 @@ function MovieDetails() {
               <NavLink
                 className={styles.link}
                 activeClassName={styles.activeLink}
-                to={`${url}/cast`}
+                to={{
+                  pathname: `${url}/cast`,
+                  state: { ...location.state },
+                }}
               >
                 Cast
               </NavLink>
               <NavLink
                 className={styles.link}
                 activeClassName={styles.activeLink}
-                to={`${url}/reviews`}
+                to={{
+                  pathname: `${url}/reviews`,
+                  state: { ...location.state },
+                }}
               >
                 Reviews
               </NavLink>
