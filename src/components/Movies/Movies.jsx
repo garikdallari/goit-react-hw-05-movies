@@ -4,6 +4,7 @@ import styles from "./Movies.module.css";
 import { fetchMovieByName } from "../../services/movies-api";
 import MovieList from "../MovieList/MovieList";
 import { HiSearch } from "react-icons/hi";
+import toast, { Toaster } from "react-hot-toast";
 
 function Movies() {
   const [value, setValue] = useState(null);
@@ -19,7 +20,10 @@ function Movies() {
 
   useEffect(() => {
     if (!value) return;
-    fetchMovieByName(value).then(setMovies);
+    fetchMovieByName(value).then((movies) => {
+      if (movies.length === 0) toast.error("Please type correct movie name");
+      setMovies(movies);
+    });
   }, [value]);
 
   const handleSubmit = (e) => {
@@ -47,6 +51,7 @@ function Movies() {
         </button>
       </form>
       {Movies && <MovieList movies={movies} />}
+      <Toaster />
     </>
   );
 }

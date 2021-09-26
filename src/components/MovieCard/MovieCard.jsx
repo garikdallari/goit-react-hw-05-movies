@@ -1,9 +1,14 @@
 import React from "react";
+import styles from "./MovieCard.module.css";
 
 function MovieCard({ movie }) {
   return (
     <>
-      <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt="" />
+      <img
+        className={styles.img}
+        src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+        alt=""
+      />
       <div>
         <h2>
           {movie.title || movie.name} ({movie.release_date.slice(0, 4)})

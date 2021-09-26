@@ -13,10 +13,13 @@ import {
   fetchMovieCasts,
   fetchMovieReviews,
 } from "../../services/movies-api";
+import { IoArrowBackCircleOutline } from "react-icons/io5";
 import MovieCard from "../MovieCard/MovieCard";
 import CastList from "../CastList/CastList";
 import ReviewList from "../ReviewList/ReviewList";
 import styles from "./MovieDetails.module.css";
+import NoMovie from "../NoMovie/NoMovie";
+
 function MovieDetails() {
   const [movie, setMovie] = useState(null);
   const [casts, setCasts] = useState(null);
@@ -45,26 +48,35 @@ function MovieDetails() {
   const noReviews = reviews.length === 0;
   return (
     <>
-      <button onClick={handleGoBack}>Go Back</button>
-      <div className={styles.card}>{movie && <MovieCard movie={movie} />}</div>
-
-      <h3>Additional information</h3>
-      <nav>
-        <NavLink
-          className={styles.link}
-          activeClassName={styles.activeLink}
-          to={`${url}/cast`}
-        >
-          Cast
-        </NavLink>
-        <NavLink
-          className={styles.link}
-          activeClassName={styles.activeLink}
-          to={`${url}/reviews`}
-        >
-          Reviews
-        </NavLink>
-      </nav>
+      <button className={styles.btn} onClick={handleGoBack}>
+        <IoArrowBackCircleOutline size={40} color={"darkred"} />
+      </button>
+      <div className={styles.card}>
+        {movie ? (
+          <>
+            <MovieCard movie={movie} />
+            <h3>Additional information</h3>
+            <nav>
+              <NavLink
+                className={styles.link}
+                activeClassName={styles.activeLink}
+                to={`${url}/cast`}
+              >
+                Cast
+              </NavLink>
+              <NavLink
+                className={styles.link}
+                activeClassName={styles.activeLink}
+                to={`${url}/reviews`}
+              >
+                Reviews
+              </NavLink>
+            </nav>
+          </>
+        ) : (
+          <NoMovie />
+        )}
+      </div>
 
       <Switch>
         <Route path={`${path}/cast`}>

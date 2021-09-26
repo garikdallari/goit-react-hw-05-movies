@@ -1,5 +1,6 @@
 .card {
-  display: flex;
+  /* display: flex; */
+  color: rgb(94, 4, 4);
 }
 .link {
   margin-right: 20px;
@@ -9,4 +10,9 @@
 }
 .activeLink {
   color: crimson;
+}
+.btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
