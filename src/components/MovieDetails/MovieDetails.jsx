@@ -28,6 +28,7 @@ function MovieDetails() {
   const { url, path } = useRouteMatch();
   const history = useHistory();
   const location = useLocation();
+  console.log({ ...location.state });
 
   useEffect(() => {
     fetchMovieById(id)
@@ -62,7 +63,7 @@ function MovieDetails() {
                 activeClassName={styles.activeLink}
                 to={{
                   pathname: `${url}/cast`,
-                  state: { from: location.state.from.pathname },
+                  state: { ...location.state },
                 }}
               >
                 Cast
@@ -72,7 +73,7 @@ function MovieDetails() {
                 activeClassName={styles.activeLink}
                 to={{
                   pathname: `${url}/reviews`,
-                  state: { from: location.state.from.pathname },
+                  state: { ...location.state },
                 }}
               >
                 Reviews
